@@ -3,7 +3,8 @@ package metier;
 public class Player {
 
 	private String name;
-	private int health, bullet, shield;
+
+    private int health, bullet, shield, bomb;
 	private boolean focused;
 
 	public Player() {
@@ -41,6 +42,14 @@ public class Player {
 		this.shield = shield;
 	}
 
+    public int getBomb() {
+        return bomb;
+    }
+
+    public void setBomb(int bomb) {
+        this.bomb = bomb;
+    }
+
 	public boolean isFocused() {
 		return focused;
 	}
@@ -52,7 +61,7 @@ public class Player {
 	@Override
 	public String toString() {
 		return "Player [name=" + name + ", health=" + health + ", bullet="
-				+ bullet + ", shield=" + shield + ", focused=" + focused + "]";
+                + bullet + ", shield=" + shield + ", bomb=" + bomb + ", focused=" + focused + "]";
 	}
 	
 }

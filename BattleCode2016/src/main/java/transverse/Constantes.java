@@ -122,4 +122,5 @@ public class Constantes {
 	public static String RELOAD = "RELOAD";
 	public static String COVER = "COVER";
 	public static String AIM  = "AIM";
+    public static String BOMB = "BOMB";
 }

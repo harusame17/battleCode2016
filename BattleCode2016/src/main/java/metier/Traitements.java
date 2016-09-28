@@ -140,100 +140,199 @@ public class Traitements {
 		}
 		return status;
 	}
+    //
+    // private static String iaOLD(String lastMove, Board plateau) {
+    // String dernierMouvement = appeler(Constantes.LAST_MOVE, Arrays.asList(idPartie, idEquipe));
+    //
+    // Constantes.logs.ajouterLog(plateau.toString());
+    // // Traitement metier
+    //
+    // Player nous = null;
+    // Player eux = null;
+    //
+    // if (Constantes.NOM_EQUIPE.equals(plateau.getPlayer1().getName())) {
+    // nous = plateau.getPlayer1();
+    // eux = plateau.getPlayer2();
+    // } else {
+    // nous = plateau.getPlayer2();
+    // eux = plateau.getPlayer1();
+    // }
+    //
+    // int notreNbBalles= nous.getBullet();
+    // int notreNbBouclie = nous.getShield();
+    // int notreNbVie = nous.getHealth();
+    //
+    //
+    // int nbBallesAdverse = eux.getBullet();
+    // int nbBouclieAdverse = eux.getShield();
+    // int nbVieAdverse = eux.getHealth();
+    //
+    //
+    // if (lastMove == null) {
+    // lastMove = Constantes.RELOAD;
+    // } else {
+    // if (Constantes.AIM.equals(lastMove)) {
+    // if (nbBouclieAdverse > 2 && notreNbVie > 2) {
+    // lastMove = Constantes.RELOAD;
+    // } else {
+    // lastMove = Constantes.SHOOT;
+    // }
+    // } else if (Constantes.AIM.equals(dernierMouvement)) {
+    // if (nbBallesAdverse > 0 && notreNbBouclie > 0)
+    // lastMove = Constantes.COVER;
+    // else {
+    // if (notreNbBalles > 0)
+    // lastMove = Constantes.SHOOT;
+    // else
+    // lastMove = Constantes.RELOAD;
+    // }
+    // } else if (Constantes.SHOOT.equals(dernierMouvement))
+    // if (nbBallesAdverse > 0)
+    // if (notreNbBalles > 0)
+    // lastMove = Constantes.SHOOT;
+    // else
+    // lastMove = Constantes.RELOAD;
+    // else {
+    // if (notreNbBalles > 0) {
+    // if (!Constantes.AIM.equals(lastMove) && nbVieAdverse > 5)
+    // lastMove = Constantes.AIM;
+    // else
+    // lastMove = Constantes.SHOOT;
+    // } else {
+    // lastMove = Constantes.RELOAD;
+    // }
+    // }
+    // else if (Constantes.RELOAD.equals(dernierMouvement))
+    // if (notreNbBalles > 0) {
+    // if (notreNbVie < 3) {
+    // if (notreNbBouclie > 0)
+    // lastMove = Constantes.COVER;
+    // else
+    // lastMove = Constantes.SHOOT;
+    // } else
+    // lastMove = Constantes.SHOOT;
+    // } else
+    // lastMove = Constantes.RELOAD;
+    // }
+    //
+    // if (lastMove.equals(Constantes.SHOOT) && notreNbBalles == 0) {
+    // if ((Constantes.AIM.equals(dernierMouvement) || Constantes.RELOAD.equals(dernierMouvement)) &&
+    // notreNbBouclie > 0) {
+    // lastMove = Constantes.COVER;
+    // } else {
+    // lastMove = Constantes.RELOAD;
+    // }
+    // }
+    //
+    // if (Constantes.RELOAD.equals(lastMove) && notreNbBalles == 6) {
+    // lastMove = Constantes.SHOOT;
+    // }
+    //
+    //// if (notreNbVie > nbVieAdverse && notreNbBouclie > plateau.getNbrActionleft()) {
+    //// lastMove = Constantes.COVER;
+    //// }
+    //
+    //
+    //
+    // return lastMove;
+    // }
 
 	private static String ia(String lastMove, Board plateau) {
-		String dernierMouvement = appeler(Constantes.LAST_MOVE, Arrays.asList(idPartie, idEquipe));
-		
-		Constantes.logs.ajouterLog(plateau.toString());
+        String dernierMouvement = appeler(Constantes.LAST_MOVE, Arrays.asList(idPartie, idEquipe));
+
+        Constantes.logs.ajouterLog(plateau.toString());
         // Traitement metier
-		
-		Player nous = null;
-		Player eux = null;
-		
-		if (Constantes.NOM_EQUIPE.equals(plateau.getPlayer1().getName())) {
-			nous = plateau.getPlayer1();
-			eux = plateau.getPlayer2();
-		} else {
-			nous = plateau.getPlayer2();
-			eux = plateau.getPlayer1();
-		}
-		
-		int notreNbBalles= nous.getBullet();
-		int notreNbBouclie = nous.getShield();
-		int notreNbVie = nous.getHealth();
-		
-		
-		int nbBallesAdverse = eux.getBullet();
-		int nbBouclieAdverse = eux.getShield();
-		int nbVieAdverse = eux.getHealth();
-		
-		
-		if (lastMove == null) {
-			lastMove = Constantes.RELOAD;
-		} else {
-			if (Constantes.AIM.equals(lastMove)) {
-				if (nbBouclieAdverse > 2 && notreNbVie > 2) {
-					lastMove = Constantes.RELOAD;
-				} else {
-					lastMove = Constantes.SHOOT;
-				}
-			} else if (Constantes.AIM.equals(dernierMouvement)) {
-				if (nbBallesAdverse > 0 && notreNbBouclie > 0)
-					lastMove = Constantes.COVER;
-				else {
-					if (notreNbBalles > 0) 
-						lastMove = Constantes.SHOOT;
-					else 
-						lastMove = Constantes.RELOAD;
-				}
-			} else if (Constantes.SHOOT.equals(dernierMouvement))
-				if (nbBallesAdverse > 0)
-					if (notreNbBalles > 0)
-						lastMove = Constantes.SHOOT;
-					else
-						lastMove = Constantes.RELOAD;
-				else {
-					if (notreNbBalles > 0) {
-						if (!Constantes.AIM.equals(lastMove) && nbVieAdverse > 5) 
-							lastMove = Constantes.AIM;
-						else 
-							lastMove = Constantes.SHOOT;
-					} else {
-						lastMove = Constantes.RELOAD;
-					}
-				}
-			else if (Constantes.RELOAD.equals(dernierMouvement))
-				if (notreNbBalles > 0) {
-					if (notreNbVie < 3)  {
-						if (notreNbBouclie > 0)
-							lastMove = Constantes.COVER;
-						else 
-							lastMove = Constantes.SHOOT;
-					} else 
-						lastMove = Constantes.SHOOT;
-				} else
-					lastMove = Constantes.RELOAD;
-		}
-		
-		if (lastMove.equals(Constantes.SHOOT) && notreNbBalles == 0) {
-			if ((Constantes.AIM.equals(dernierMouvement) || Constantes.RELOAD.equals(dernierMouvement)) && notreNbBouclie > 0) {
-				lastMove = Constantes.COVER;
-			} else {
-				lastMove = Constantes.RELOAD;
-			}
-		} 
-		
-		if (Constantes.RELOAD.equals(lastMove) && notreNbBalles == 6) {
-			lastMove = Constantes.SHOOT;
-		}
-		
-//		if (notreNbVie > nbVieAdverse && notreNbBouclie > plateau.getNbrActionleft()) {
-//			lastMove = Constantes.COVER;
-//		}
-		
-		
-		
-		return lastMove;
+
+        Player nous = null;
+        Player eux = null;
+
+        if (Constantes.NOM_EQUIPE.equals(plateau.getPlayer1().getName())) {
+            nous = plateau.getPlayer1();
+            eux = plateau.getPlayer2();
+        } else {
+            nous = plateau.getPlayer2();
+            eux = plateau.getPlayer1();
+        }
+
+        int notreNbBalles = nous.getBullet();
+        int notreNbBouclie = nous.getShield();
+        int notreNbVie = nous.getHealth();
+        int notreNbBombe = nous.getBomb();
+
+        int nbBallesAdverse = eux.getBullet();
+        int nbBouclieAdverse = eux.getShield();
+        int nbVieAdverse = eux.getHealth();
+        int nbBombeAdverse = eux.getBomb();
+
+        if (lastMove == null) {
+            lastMove = Constantes.RELOAD;
+        } else {
+            if (Constantes.AIM.equals(lastMove)) {
+                if (nbBouclieAdverse > 2 && notreNbVie > 2) {
+                    lastMove = Constantes.RELOAD;
+                } else {
+                    lastMove = Constantes.SHOOT;
+                }
+            } else if (Constantes.AIM.equals(dernierMouvement)) {
+                if (nbBallesAdverse > 0 && notreNbBouclie > 0)
+                    lastMove = Constantes.COVER;
+                else {
+                    if (notreNbBalles > 0)
+                        lastMove = Constantes.SHOOT;
+                    else
+                        lastMove = Constantes.RELOAD;
+                }
+            } else if (Constantes.SHOOT.equals(dernierMouvement))
+                if (nbBallesAdverse > 0)
+                    if (notreNbBalles > 0)
+                        lastMove = Constantes.SHOOT;
+                    else
+                        lastMove = Constantes.RELOAD;
+                else {
+                    if (notreNbBalles > 0) {
+                        if (!Constantes.AIM.equals(lastMove) && nbVieAdverse > 5)
+                            lastMove = Constantes.AIM;
+                        else
+                            lastMove = Constantes.SHOOT;
+                    } else {
+                        lastMove = Constantes.RELOAD;
+                    }
+                }
+            else if (Constantes.RELOAD.equals(dernierMouvement))
+                if (notreNbBalles > 0) {
+                    if (notreNbVie < 3) {
+                        if (notreNbBouclie > 0)
+                            lastMove = Constantes.COVER;
+                        else
+                            lastMove = Constantes.SHOOT;
+                    } else
+                        lastMove = Constantes.SHOOT;
+                } else
+                    lastMove = Constantes.RELOAD;
+        }
+
+        if (lastMove.equals(Constantes.SHOOT) && notreNbBalles == 0) {
+            if ((Constantes.AIM.equals(dernierMouvement) || Constantes.RELOAD.equals(dernierMouvement))
+                    && notreNbBouclie > 0) {
+                lastMove = Constantes.COVER;
+            } else {
+                lastMove = Constantes.RELOAD;
+            }
+        }
+
+        if (nbBallesAdverse == 0 && notreNbBombe > 0) {
+            lastMove = Constantes.BOMB;
+        }
+
+        if (Constantes.RELOAD.equals(lastMove) && notreNbBalles == 6) {
+            lastMove = Constantes.SHOOT;
+        }
+
+        // if (notreNbVie > nbVieAdverse && notreNbBouclie > plateau.getNbrActionleft()) {
+        // lastMove = Constantes.COVER;
+        // }
+
+        return lastMove;
 	}
 	
 	private static Board extraitJson(String json) {
