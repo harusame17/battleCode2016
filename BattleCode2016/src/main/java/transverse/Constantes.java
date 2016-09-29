@@ -41,9 +41,9 @@ public class Constantes {
     // public static String NOM_EQUIPE = "Team-1991-Sauf-Maxime-Qui-Est-De-1988";
     // public static String MDP = "FA188391ahah";
     // public static String GETID = "player/getIdEquipe/" + NOM_EQUIPE + "/" + MDP;
-    public static String NOM_EQUIPE = "test";
+    public static String NOM_EQUIPE = "aaa-Team-Des-Jeremy-Lol";
 
-    public static String MDP = "test";
+    public static String MDP = "IlsSontChiantsSurSim@tAvecLeurNomDEquipeQuiFait10kmDeLong";
 
 	public static String GETID = "player/getIdEquipe/" + NOM_EQUIPE + "/" + MDP;
 	
@@ -122,4 +122,5 @@ public class Constantes {
 	public static String RELOAD = "RELOAD";
 	public static String COVER = "COVER";
 	public static String AIM  = "AIM";
+    public static String BOMB = "BOMB";
 }
