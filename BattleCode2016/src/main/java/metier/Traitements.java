@@ -67,7 +67,7 @@ public class Traitements {
 		
 		idPartie = Constantes.NA;
 		while (Constantes.NA.equals(idPartie)) {
-			idPartie = appeler(Constantes.NEW_BOT, Arrays.asList("6", idEquipe));
+            idPartie = appeler(Constantes.NEW_BOT, Arrays.asList("7", idEquipe));
 		}
 
 		String status = traitementJeu();
