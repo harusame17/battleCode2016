@@ -272,13 +272,7 @@ public class Traitements {
 
                 if (nextMove.equals(Constantes.SHOOT)) {
 
-                    /*
-                     * if (notreNbBalles < 2 && !dernierMouvement.equals(Constantes.AIM)) {
-                     * 
-                     * nextMove = Constantes.RELOAD;
-                     * 
-                     * } else
-                     */ if (notreNbBalles < 1) {
+                  if (notreNbBalles < 1) {
                         nextMove = Constantes.RELOAD;
                     }
 
