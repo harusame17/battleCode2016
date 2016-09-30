@@ -4,7 +4,8 @@ public class Board {
 
 	private Player player1;
 	private Player player2;
-	private int nbrActionleft;
+
+    private int nbrActionLeft;
 	
 	
 	public Board() {
@@ -31,20 +32,20 @@ public class Board {
 	}
 
 
-	public int getNbrActionleft() {
-		return nbrActionleft;
+    public int getNbrActionLeft() {
+        return nbrActionLeft;
 	}
 
 
-	public void setNbrActionleft(int nbrActionleft) {
-		this.nbrActionleft = nbrActionleft;
+    public void setNbrActionLeft(int nbrActionLeft) {
+        this.nbrActionLeft = nbrActionLeft;
 	}
 
 
 	@Override
 	public String toString() {
-		return "Board [player1=" + player1 + ", player2=" + player2
-				+ ", nbrActionleft=" + nbrActionleft + "]";
+        return "Board \n\tplayer1=" + player1 + "\n\tplayer2=" + player2 + "\n\tnbrActionleft="
+                + nbrActionLeft + "]";
 	}
 
 }
