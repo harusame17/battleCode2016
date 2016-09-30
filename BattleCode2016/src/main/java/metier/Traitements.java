@@ -186,7 +186,7 @@ public class Traitements {
             mouvement = Constantes.RELOAD;
         }
 
-        if (Math.random() > 0.7 && notreNbBouclie > 5 && nbBallesAdverse >= 2) {
+        if (Math.random() > 0.75 && notreNbBouclie > 5 && nbBallesAdverse >= 2) {
             mouvement = Constantes.COVER;
         }
 
