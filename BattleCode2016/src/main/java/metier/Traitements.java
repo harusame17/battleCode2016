@@ -5,6 +5,8 @@ import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.swing.JPanel;
+
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpResponseException;
 
@@ -71,21 +73,22 @@ public class Traitements {
     }
 
     // game/getlastmove/{idPartie}
-    public static void traiterGoBot() {
+    public static void traiterGoBot(String lvlBot) {
         Constantes.logs.ajouterLog("\n");
         traiterGetIdEquipe();
 
         idPartie = Constantes.NA;
         while (Constantes.NA.equals(idPartie)) {
-            idPartie = appeler(Constantes.NEW_BOT, Arrays.asList("5", idEquipe));
+        	Object selected = 
+            idPartie = appeler(Constantes.NEW_BOT, Arrays.asList(lvlBot, idEquipe));
         }
 
         String status = traitementJeu();
 
         if (Constantes.GAGNE.equals(status)) {
-            Constantes.logs.ajouterLog("==== VICTOIRE DE LA TEAM !! ===");
+            Constantes.logs.ajouterLog("==== VICTOIRE DE LA TEAM !! ====");
         } else if (Constantes.PERDU.equals(status)) {
-            Constantes.logs.ajouterLog("=== MALHEUREUSE DEFAITE... ===");
+            Constantes.logs.ajouterLog("==== MALHEUREUSE DEFAITE... ====");
         }
 
     }
@@ -130,7 +133,12 @@ public class Traitements {
                 if (Constantes.KO.equals(retour)) {
                     status = Constantes.PERDU;
                 } else if (Constantes.GAMEOVER.equals(retour)) {
-                    status = Constantes.GAGNE;
+                	bombeAmieLancee1 = 99;
+                	bombeAmieLancee2 = 99;
+                	tourExplodedBomb1 = 99;
+                	tourExplodedBomb2 = 99;
+                	lastShoot = null;
+                	status = appeler(Constantes.STATUS, Arrays.asList(idPartie, idEquipe));
                 }
 
             }

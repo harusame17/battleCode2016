@@ -5,7 +5,10 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JPanel;
+
+import transverse.Constantes;
 
 public class BoutonsTest extends JPanel {
 
@@ -84,6 +87,20 @@ public class BoutonsTest extends JPanel {
 		gbc_btnLastmove.gridx = 3;
 		gbc_btnLastmove.gridy = 1;
 		add(btnLastmove, gbc_btnLastmove);
+		
+		
+		Object[] listLvl = new Object[]{};
+		JComboBox comboLvl = new JComboBox(listLvl);
+		for(int i = 1;i<= Constantes.NB_LEVEL;i++) {
+			comboLvl.addItem(i);
+		}
+		gestionEvenements.ajouterEvenementListLvl(comboLvl);
+		GridBagConstraints gbc_comboLvl = new GridBagConstraints();
+		gbc_comboLvl.anchor = GridBagConstraints.BELOW_BASELINE;
+		gbc_comboLvl.insets = new Insets(0, 0, 5, 5);
+		gbc_comboLvl.gridx = 0;
+		gbc_comboLvl.gridy = 3;
+		add(comboLvl, gbc_comboLvl);
 		
 		JButton btnGo = new JButton("Go Bot!");
 		gestionEvenements.ajouterEvenementGoBot(btnGo);
