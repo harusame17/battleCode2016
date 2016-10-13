@@ -158,7 +158,7 @@ public class Traitements {
     }
 
     private static String ia(String lastMove, Board plateau) {
-        return iaSER(lastMove, plateau);
+        return iaSAY(lastMove, plateau);
     }
 
     private static String iaJLN(String lastMove, Board plateau) {
@@ -335,7 +335,36 @@ public class Traitements {
     }
 
     private static String iaSAY(String lastMove, Board plateau) {
-        return Constantes.SHOOT;
+    	String dernierMouvement = appeler(Constantes.LAST_MOVE, Arrays.asList(idPartie, idEquipe));
+
+        Constantes.logs.ajouterLog(plateau.toString());
+        // Traitement metier
+
+        // test soizic
+        Player nous = null;
+        Player eux = null;
+
+        if (Constantes.NOM_EQUIPE.equals(plateau.getPlayer1().getName())) {
+            nous = plateau.getPlayer1();
+            eux = plateau.getPlayer2();
+        } else {
+            nous = plateau.getPlayer2();
+            eux = plateau.getPlayer1();
+        }
+
+        int notreNbBalles = nous.getBullet();
+        int notreNbBouclie = nous.getShield();
+        int notreNbVie = nous.getHealth();
+        int notreNbBombe = nous.getBomb();
+
+        int nbBallesAdverse = eux.getBullet();
+        int nbBouclieAdverse = eux.getShield();
+        int nbVieAdverse = eux.getHealth();
+        int nbBombeAdverse = eux.getBomb();
+
+        String mouvement = Constantes.SHOOT;
+
+    	return mouvement;
     }
 
     private static Board extraitJson(String json) {
