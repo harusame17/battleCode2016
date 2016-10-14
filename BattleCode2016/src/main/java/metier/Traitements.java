@@ -199,6 +199,7 @@ public class Traitements {
 		return iaJLN(lastMove, plateau);
 	}
 
+
     private static String iaJLN(String lastMove, Board plateau) {
         String dernierMouvement = appeler(Constantes.LAST_MOVE, Arrays.asList(idPartie, idEquipe));
 
