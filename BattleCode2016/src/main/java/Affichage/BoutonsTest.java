@@ -94,13 +94,30 @@ public class BoutonsTest extends JPanel {
 		for(int i = 1;i<= Constantes.NB_LEVEL;i++) {
 			comboLvl.addItem(i);
 		}
+		comboLvl.addItem("ALL");
+		comboLvl.setSelectedItem(Constantes.NB_LEVEL);
 		gestionEvenements.ajouterEvenementListLvl(comboLvl);
 		GridBagConstraints gbc_comboLvl = new GridBagConstraints();
 		gbc_comboLvl.anchor = GridBagConstraints.BELOW_BASELINE;
 		gbc_comboLvl.insets = new Insets(0, 0, 5, 5);
-		gbc_comboLvl.gridx = 0;
-		gbc_comboLvl.gridy = 3;
+		gbc_comboLvl.gridx = 1;
+		gbc_comboLvl.gridy = 2;
 		add(comboLvl, gbc_comboLvl);
+		
+		Object[] listIA = new Object[]{};
+		JComboBox comboIA = new JComboBox(listIA);
+		comboIA.addItem("SER");
+		comboIA.addItem("SAY");
+		comboIA.addItem("JLN");
+		comboIA.addItem("JLL");
+		comboIA.setSelectedItem(Constantes.IA_DEFAULT);
+		gestionEvenements.ajouterEvenementListIA(comboIA);
+		GridBagConstraints gbc_comboIA = new GridBagConstraints();
+		gbc_comboIA.anchor = GridBagConstraints.BELOW_BASELINE;
+		gbc_comboIA.insets = new Insets(0, 0, 5, 5);
+		gbc_comboIA.gridx = 2;
+		gbc_comboIA.gridy = 2;
+		add(comboIA, gbc_comboIA);
 		
 		JButton btnGo = new JButton("Go Bot!");
 		gestionEvenements.ajouterEvenementGoBot(btnGo);

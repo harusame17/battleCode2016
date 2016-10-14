@@ -73,28 +73,55 @@ public class Traitements {
     }
 
     // game/getlastmove/{idPartie}
-    public static void traiterGoBot(String lvlBot) {
-        Constantes.logs.ajouterLog("\n");
-        traiterGetIdEquipe();
+	public static void traiterGoBot(String lvlBot, String ia) {
 
-        idPartie = Constantes.NA;
-        while (Constantes.NA.equals(idPartie)) {
-        	Object selected = 
-            idPartie = appeler(Constantes.NEW_BOT, Arrays.asList(lvlBot, idEquipe));
-        }
+		if (!lvlBot.equals("ALL")) {
+			Constantes.logs.ajouterLog("\n");
+			traiterGetIdEquipe();
 
-        String status = traitementJeu();
+			idPartie = Constantes.NA;
+			while (Constantes.NA.equals(idPartie)) {
 
-        if (Constantes.GAGNE.equals(status)) {
-            Constantes.logs.ajouterLog("==== VICTOIRE DE LA TEAM !! ====");
-        } else if (Constantes.PERDU.equals(status)) {
-            Constantes.logs.ajouterLog("==== MALHEUREUSE DEFAITE... ====");
-        }
+				Object selected = idPartie = appeler(Constantes.NEW_BOT, Arrays.asList(lvlBot, idEquipe));
 
-    }
+			}
+
+			String status = traitementJeu(ia);
+
+			if (Constantes.GAGNE.equals(status)) {
+				Constantes.logs.ajouterLog("==== VICTOIRE DE LA TEAM !! ====");
+			} else if (Constantes.PERDU.equals(status)) {
+				Constantes.logs.ajouterLog("==== MALHEUREUSE DEFAITE... ====");
+			}
+		} else {
+			for (int i = 1; i <= Constantes.NB_LEVEL; i++) {
+				lvlBot = String.valueOf(i);
+
+				Constantes.logs.ajouterLog("\n");
+				traiterGetIdEquipe();
+
+				idPartie = Constantes.NA;
+				while (Constantes.NA.equals(idPartie)) {
+
+					Object selected = idPartie = appeler(Constantes.NEW_BOT, Arrays.asList(lvlBot, idEquipe));
+
+				}
+
+				String status = traitementJeu(ia);
+
+				if (Constantes.GAGNE.equals(status)) {
+					Constantes.logs.ajouterLog("==== VICTOIRE DE LA TEAM !! ====");
+				} else if (Constantes.PERDU.equals(status)) {
+					Constantes.logs.ajouterLog("==== MALHEUREUSE DEFAITE... ====");
+				}
+			}
+
+		}
+
+	}
 
     // game/getlastmove/{idPartie}
-    public static void traiterGoVersus() {
+    public static void traiterGoVersus(String ia) {
         Constantes.logs.ajouterLog("\n");
         traiterGetIdEquipe();
 
@@ -103,7 +130,7 @@ public class Traitements {
             idPartie = appeler(Constantes.NEXT_JOUEUR, Arrays.asList(idEquipe));
         }
 
-        String status = traitementJeu();
+        String status = traitementJeu(ia);
 
         if (Constantes.GAGNE.equals(status)) {
             Constantes.logs.ajouterLog("==== VICTOIRE DE LA TEAM !! ===");
@@ -113,7 +140,7 @@ public class Traitements {
 
     }
 
-    private static String traitementJeu() {
+    private static String traitementJeu(String ia) {
         String status = Constantes.NON;
         String lastMove = null;
         while (!Constantes.GAMEOVER.equals(status) && !Constantes.GAGNE.equals(status)
@@ -125,7 +152,7 @@ public class Traitements {
             if (Constantes.OUI.equals(status)) {
                 Board plateau = extraitJson(appeler(Constantes.BOARD, Arrays.asList(idPartie)));
 
-                lastMove = ia(lastMove, plateau);
+                lastMove = ia(lastMove, plateau, ia);
 
                 String retour = appeler(Constantes.PLAY, Arrays.asList(idPartie, idEquipe, lastMove));
 
@@ -157,9 +184,20 @@ public class Traitements {
         return status;
     }
 
-    private static String ia(String lastMove, Board plateau) {
-        return iaSER(lastMove, plateau);
-    }
+	private static String ia(String lastMove, Board plateau, String ia) {
+		if (ia.equals("SER")) {
+			return iaSER(lastMove, plateau);
+		} else if (ia.equals("SAY")) {
+			return iaSAY(lastMove, plateau);
+		} else if (ia.equals("JLN")) {
+			return iaJLN(lastMove, plateau);
+		} else if (ia.equals("JLL")) {
+			return iaJLL(lastMove, plateau);
+		}
+
+		// Incohérent
+		return iaJLN(lastMove, plateau);
+	}
 
     private static String iaJLN(String lastMove, Board plateau) {
         String dernierMouvement = appeler(Constantes.LAST_MOVE, Arrays.asList(idPartie, idEquipe));
@@ -335,7 +373,36 @@ public class Traitements {
     }
 
     private static String iaSAY(String lastMove, Board plateau) {
-        return Constantes.SHOOT;
+    	String dernierMouvement = appeler(Constantes.LAST_MOVE, Arrays.asList(idPartie, idEquipe));
+
+        Constantes.logs.ajouterLog(plateau.toString());
+        // Traitement metier
+
+        // test soizic
+        Player nous = null;
+        Player eux = null;
+
+        if (Constantes.NOM_EQUIPE.equals(plateau.getPlayer1().getName())) {
+            nous = plateau.getPlayer1();
+            eux = plateau.getPlayer2();
+        } else {
+            nous = plateau.getPlayer2();
+            eux = plateau.getPlayer1();
+        }
+
+        int notreNbBalles = nous.getBullet();
+        int notreNbBouclie = nous.getShield();
+        int notreNbVie = nous.getHealth();
+        int notreNbBombe = nous.getBomb();
+
+        int nbBallesAdverse = eux.getBullet();
+        int nbBouclieAdverse = eux.getShield();
+        int nbVieAdverse = eux.getHealth();
+        int nbBombeAdverse = eux.getBomb();
+
+        String mouvement = Constantes.SHOOT;
+
+    	return mouvement;
     }
 
     private static Board extraitJson(String json) {

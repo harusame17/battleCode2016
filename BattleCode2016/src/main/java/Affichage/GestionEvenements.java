@@ -11,7 +11,7 @@ import metier.Traitements;
 public class GestionEvenements implements ActionListener {
 
 	JButton ping, ping500, ping403, idEquipe, status, board, lastMove, goBot, goVersus;
-	JComboBox listLvl;
+	JComboBox listLvl, listIA;
 
 	
 	public void ajouterEvenementPing(JButton bouton) {
@@ -31,6 +31,10 @@ public class GestionEvenements implements ActionListener {
 	public void ajouterEvenementListLvl(JComboBox combo) {
 		combo.addActionListener(this);
 		listLvl = combo;
+	}
+	public void ajouterEvenementListIA(JComboBox combo) {
+		combo.addActionListener(this);
+		listIA = combo;
 	}
 
 	public void ajouterEvenementGetIdEquipe(JButton bouton) {
@@ -83,9 +87,11 @@ public class GestionEvenements implements ActionListener {
 			Traitements.traiterStatus();
 		} else if (e.getSource() == goBot) {
 			Object selected = listLvl.getSelectedItem();
-			Traitements.traiterGoBot(selected.toString());
+			Object selected2 = listIA.getSelectedItem();
+			Traitements.traiterGoBot(selected.toString(), selected2.toString());
 		} else if (e.getSource() == goVersus) {
-			Traitements.traiterGoVersus();
+			Object selected = listIA.getSelectedItem();
+			Traitements.traiterGoVersus(selected.toString());
 		}
 	}
 

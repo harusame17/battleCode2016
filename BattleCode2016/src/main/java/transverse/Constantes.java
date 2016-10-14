@@ -110,7 +110,7 @@ public class Constantes {
 	
 	public static final boolean TEST = true;
 
-    public static final boolean VIA_PROXY = false;
+    public static final boolean VIA_PROXY = true;
 	
 	// Bien dégueu
 	public static Logs logs;
@@ -126,4 +126,7 @@ public class Constantes {
     
     // Nombre de niveaux
     public static int NB_LEVEL = 7;
+    
+    // Combobox default
+    public static String IA_DEFAULT = "SER";
 }
