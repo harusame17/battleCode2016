@@ -1,19 +1,15 @@
 package metier;
 
+import com.google.gson.Gson;
+import connecteur.Connecteur;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpResponseException;
+import transverse.Constantes;
+
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
-
-import javax.swing.JPanel;
-
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpResponseException;
-
-import com.google.gson.Gson;
-
-import connecteur.Connecteur;
-import transverse.Constantes;
 
 public class Traitements {
 
