@@ -124,6 +124,11 @@ public class Traitements {
         idPartie = Constantes.NA;
         while (Constantes.NA.equals(idPartie)) {
             idPartie = appeler(Constantes.NEXT_JOUEUR, Arrays.asList(idEquipe));
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
         String status = traitementJeu(ia);
@@ -143,6 +148,11 @@ public class Traitements {
                 && !Constantes.PERDU.equals(status)) {
             while (Constantes.NON.equals(status) || Constantes.ANNULE.equals(status)) {
                 status = appeler(Constantes.STATUS, Arrays.asList(idPartie, idEquipe));
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
 
             if (Constantes.OUI.equals(status)) {

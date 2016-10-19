@@ -110,7 +110,7 @@ public class Constantes {
 	
 	public static final boolean TEST = true;
 
-    public static final boolean VIA_PROXY = true;
+    public static final boolean VIA_PROXY = false;
 	
 	// Bien dégueu
 	public static Logs logs;
