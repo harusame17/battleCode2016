@@ -219,20 +219,147 @@ public class Traitements {
         String mouvement = "";
         
         if(plateau.getNbrTurnsLeft() == 53){
-        	mouvement = "ARCHER";
+        	mouvement = "CHAMAN";
         }else if(plateau.getNbrTurnsLeft() == 52){
         	mouvement = "PALADIN";
         }else if(plateau.getNbrTurnsLeft() == 51){
-        	mouvement = "ORC";
+        	mouvement = "ARCHER";
         }else{
-        	String coup1 = "A1,ATTACK,E1";
-        	String coup2 = "A2,ATTACK,E2";
-        	String coup3 = "A3,ATTACK,E3";
+        	String coup1 = "A1,ATTACK,";
+        	String coup2 = "A2,ATTACK,";
+        	String coup3 = "A3,ATTACK,";
+        	
+        	Fighter archer = possede("ARCHER",nous);
+        	Fighter chaman = possede("CHAMAN",nous);
+        	Fighter paladin = possede("PALADIN",nous);
+        	
+        	if(plateau.getNbrTurnsLeft() == 50){
+        		// PREMIER TOUR
+            	coup1 = "A1,REST,A1";
+            	coup2 = "A2,ATTACK,E1";
+            	coup3 = "A3,REST,A3";
+        	}else{
+        		coup1 += getWeakerFigther(eux);
+        		coup3 += getWeakerFigther(eux);
+        		Fighter f = possede("CHAMAN", eux);
+        		if(f!=null){
+        			if(f.getCurrentMana()>=2){
+        				coup2 = "A2,REST,A2";
+        				if(paladin.getCurrentMana()>=2){
+                			coup2 = "A2,CHARGE,"+getWeakerFigther(eux);
+            			}
+        			}else{
+        				// CHAMAN ADVERSE SANS AP
+                    	coup2 = "A2,ATTACK,"+getWeakerFigther(eux);
+                    	if(archer.getCurrentMana()>=2){
+                			coup3 = "A3,FIREBOLT,"+getWeakerFigther(eux);
+            			}
+        			}
+        		}else{
+        			// ILS ONT PAS DE CHAMAN
+        			coup2 = "A2,ATTACK,"+getWeakerFigther(eux);
+        			if(archer.getCurrentMana()>=2){
+            			coup3 = "A3,FIREBOLT,"+getWeakerFigther(eux);
+        			}
+        		}
+        		
+        		String brule = getFighterBrule(nous);
+        		if(brule!= null){
+        			if(chaman.getCurrentMana()>=2){
+        				coup1="A1,CLEANSE,"+brule;
+        			}
+        		}
+        		
+        		if(chaman.getCurrentMana()<2){
+        			coup1="A1,REST,A1";
+        		}
+        		
+        		String effraye = getFighterEffraye(nous);
+        		if(effraye!= null){
+    				if("A1".equals(effraye)){
+    					coup1=effraye+",DEFEND,"+effraye;
+    				}else if("A2".equals(effraye)){
+    					coup2=effraye+",DEFEND,"+effraye;
+    				}else{
+    					coup3=effraye+",DEFEND,"+effraye;
+    				}
+        		}
+        		
+        	}
+        	
+        	
         	mouvement =coup1+"$"+coup2+"$"+coup3;
         }
         return mouvement;
     }
+    
+    
+    public static String getFighterBrule(Player p) {
 
+        for(int i = 0; i < p.getFighters().size(); i++) {
+            if(null != p.getFighters().get(i).getStates() && p.getFighters().get(i).getStates().contains("BURNING")) {
+                return "A"+(i+1);
+            }
+        }
+
+        return null;
+    }
+
+    public static String getFighterEffraye(Player p) {
+
+        for(int i = 0; i < p.getFighters().size(); i++) {
+            if(null != p.getFighters().get(i).getStates() && p.getFighters().get(i).getStates().contains("SCARED")) {
+                return "A"+(i+1);
+            }
+        }
+
+        return null;
+    }
+
+    public static String getFighterEtourdi(Player p) {
+
+        for( int i = 0; i < p.getFighters().size(); i++) {
+            if(null != p.getFighters().get(i).getStates() && p.getFighters().get(i).getStates().contains("STUNNED")) {
+                return "A"+(i+1);
+            }
+        }
+
+        return null;
+    }
+    
+    public static String getWeakerFigther(Player p) {
+
+    	Fighter f = possede("PRIEST",p);
+    	Fighter f2 = possede("CHAMAN",p);
+
+    	if(f!=null){
+    		return "E"+f.getOrderNumberInTeam();
+    	}
+    	if(f2!=null){
+    		return "E"+f2.getOrderNumberInTeam();
+    	}
+        int minLife = 1000;
+        int weaker = 1;
+        for(int i = 0; i < p.getFighters().size(); i++) {
+            if(p.getFighters().get(i).getCurrentLife()>0 && p.getFighters().get(i).getCurrentLife() < minLife) {
+                minLife = p.getFighters().get(i).getCurrentLife();
+                weaker = i+1;
+            }
+        }
+
+        return "E"+weaker;
+    }
+    
+    
+    public static  Fighter possede(String s, Player p){
+    	for(Fighter f : p.getFighters()){
+    		if(f.getFighterClass().equals(s)){
+    			return f;
+    		}
+    	}
+    	return null;
+    }
+    
     private static String iaSER(String lastMove, Board plateau) {
         return null;
     }

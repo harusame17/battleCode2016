@@ -133,8 +133,8 @@ public class Constantes {
     public static String BOMB = "BOMB";
     
     // Nombre de niveaux
-    public static int NB_LEVEL = 7;
+    public static int NB_LEVEL = 15;
     
     // Combobox default
-    public static String IA_DEFAULT = "SER";
+    public static String IA_DEFAULT = "JLN";
 }
