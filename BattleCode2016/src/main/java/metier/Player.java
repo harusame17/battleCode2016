@@ -1,67 +1,78 @@
 package metier;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Player {
 
-	private String name;
+	private String playerId;
+	
 
-    private int health, bullet, shield, bomb;
-	private boolean focused;
+	private String playerName;
+	
+
+	public List<Fighter> fighters;
+	
+	
+	/**
+	 * @return the playerId
+	 */
+	public String getPlayerId() {
+		return playerId;
+	}
+
+
+
+	/**
+	 * @param playerId the playerId to set
+	 */
+	public void setPlayerId(String playerId) {
+		this.playerId = playerId;
+	}
+
+
+
+	/**
+	 * @return the playerName
+	 */
+	public String getPlayerName() {
+		return playerName;
+	}
+
+
+
+	/**
+	 * @param playerName the playerName to set
+	 */
+	public void setPlayerName(String playerName) {
+		this.playerName = playerName;
+	}
+
+
+
 
 	public Player() {
+		fighters = new ArrayList<Fighter>();
 	}
 
-	public String getName() {
-		return name;
+
+	/**
+	 * @return the fighters
+	 */
+	public List<Fighter> getFighters() {
+		return fighters;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+
+
+	/**
+	 * @param fighters the fighters to set
+	 */
+	public void setFighters(List<Fighter> fighters) {
+		this.fighters = fighters;
 	}
-
-	public int getHealth() {
-		return health;
-	}
-
-	public void setHealth(int health) {
-		this.health = health;
-	}
-
-	public int getBullet() {
-		return bullet;
-	}
-
-	public void setBullet(int bullet) {
-		this.bullet = bullet;
-	}
-
-	public int getShield() {
-		return shield;
-	}
-
-	public void setShield(int shield) {
-		this.shield = shield;
-	}
-
-    public int getBomb() {
-        return bomb;
-    }
-
-    public void setBomb(int bomb) {
-        this.bomb = bomb;
-    }
-
-	public boolean isFocused() {
-		return focused;
-	}
-
-	public void setFocused(boolean focused) {
-		this.focused = focused;
-	}
-
-	@Override
-	public String toString() {
-		return "Player [name=" + name + ", health=" + health + ", bullet="
-                + bullet + ", shield=" + shield + ", bomb=" + bomb + ", focused=" + focused + "]";
-	}
+	
+	
+	
 	
 }

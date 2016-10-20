@@ -228,13 +228,13 @@ public class Traitements {
         if(plateau.getNbrTurnsLeft() == 53){
         	mouvement = "ARCHER";
         }else if(plateau.getNbrTurnsLeft() == 52){
-        	mouvement = "CHAMAN";
+        	mouvement = "PALADIN";
         }else if(plateau.getNbrTurnsLeft() == 51){
-        	mouvement = "GUARD";
+        	mouvement = "ORC";
         }else{
         	String coup1 = "A1,ATTACK,E1";
-        	String coup2 = "A2,ATTACK,E1";
-        	String coup3 = "A3,ATTACK,E1";
+        	String coup2 = "A2,ATTACK,E2";
+        	String coup3 = "A3,ATTACK,E3";
         	mouvement =coup1+"$"+coup2+"$"+coup3;
         }
         return mouvement;
@@ -258,7 +258,7 @@ public class Traitements {
         Player nous = null;
         Player eux = null;
 
-        if (Constantes.NOM_EQUIPE.equals(plateau.getPlayer1().getName())) {
+        if (Constantes.NOM_EQUIPE.equals(plateau.getPlayer1().getPlayerName())) {
             nous = plateau.getPlayer1();
             eux = plateau.getPlayer2();
         } else {
@@ -266,15 +266,15 @@ public class Traitements {
             eux = plateau.getPlayer1();
         }
 
-        int notreNbBalles = nous.getBullet();
-        int notreNbBouclie = nous.getShield();
-        int notreNbVie = nous.getHealth();
-        int notreNbBombe = nous.getBomb();
-
-        int nbBallesAdverse = eux.getBullet();
-        int nbBouclieAdverse = eux.getShield();
-        int nbVieAdverse = eux.getHealth();
-        int nbBombeAdverse = eux.getBomb();
+//        int notreNbBalles = nous.getBullet();
+//        int notreNbBouclie = nous.getShield();
+//        int notreNbVie = nous.getHealth();
+//        int notreNbBombe = nous.getBomb();
+//
+//        int nbBallesAdverse = eux.getBullet();
+//        int nbBouclieAdverse = eux.getShield();
+//        int nbVieAdverse = eux.getHealth();
+//        int nbBombeAdverse = eux.getBomb();
 
         String mouvement = Constantes.SHOOT;
 
