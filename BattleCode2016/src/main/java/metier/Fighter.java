@@ -1,5 +1,7 @@
 package metier;
 
+import java.util.List;
+
 public class Fighter {
 
 	public String fighterClass;
@@ -9,7 +11,7 @@ public class Fighter {
 	public int maxAvailableLife;
 	public int currentMana;
 	public int currentLife;
-	public String states;
+	public List<State> states;
 	public String action;
 	public String fighterID;
 	public String diffMana;
@@ -101,13 +103,13 @@ public class Fighter {
 	/**
 	 * @return the states
 	 */
-	public String getStates() {
+	public List<State> getStates() {
 		return states;
 	}
 	/**
 	 * @param states the states to set
 	 */
-	public void setStates(String states) {
+	public void setStates( List<State> states) {
 		this.states = states;
 	}
 	/**
