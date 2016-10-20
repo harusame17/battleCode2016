@@ -17,15 +17,11 @@ public class Traitements {
 
     private static String idPartie = null;
 
-    private static int tourExplodedBomb1 = 99;
 
-    private static int tourExplodedBomb2 = 99;
 
     private static String lastShoot = null;
 
-    private static int bombeAmieLancee1 = 99;
 
-    private static int bombeAmieLancee2 = 99;
 
     public static void traiterPing() {
         appeler(Constantes.PING, null);
@@ -166,10 +162,6 @@ public class Traitements {
                 if (Constantes.KO.equals(retour)) {
                     status = Constantes.PERDU;
                 } else if (Constantes.GAMEOVER.equals(retour)) {
-                	bombeAmieLancee1 = 99;
-                	bombeAmieLancee2 = 99;
-                	tourExplodedBomb1 = 99;
-                	tourExplodedBomb2 = 99;
                 	lastShoot = null;
                 	status = appeler(Constantes.STATUS, Arrays.asList(idPartie, idEquipe));
                 }
@@ -191,15 +183,15 @@ public class Traitements {
     }
 
 	private static String ia(String lastMove, Board plateau, String ia) {
-		if (ia.equals("SER")) {
-			return iaSER(lastMove, plateau);
-		} else if (ia.equals("SAY")) {
-			return iaSAY(lastMove, plateau);
-		} else if (ia.equals("JLN")) {
-			return iaJLN(lastMove, plateau);
-		} else if (ia.equals("JLL")) {
-			return iaJLL(lastMove, plateau);
-		}
+//		if (ia.equals("SER")) {
+//			return iaSER(lastMove, plateau);
+//		} else if (ia.equals("SAY")) {
+//			return iaSAY(lastMove, plateau);
+//		} else if (ia.equals("JLN")) {
+//			return iaJLN(lastMove, plateau);
+//		} else if (ia.equals("JLL")) {
+//			return iaJLL(lastMove, plateau);
+//		}
 
 		// Incohérent
 		return iaJLN(lastMove, plateau);
@@ -214,14 +206,15 @@ public class Traitements {
 
         Player nous = null;
         Player eux = null;
-
-//        if (Constantes.NOM_EQUIPE.equals(plateau.getPlayer1().getName())) {
-//            nous = plateau.getPlayer1();
-//            eux = plateau.getPlayer2();
-//        } else {
-//            nous = plateau.getPlayer2();
-//            eux = plateau.getPlayer1();
-//        }
+        
+        List<Player> players =  plateau.getPlayerBoards();
+        for (Player player : players) {
+			if(player.getPlayerName().equals("aaa-Team-Des-JerOnDoitAbregerEnFaitDsl")){
+				nous = player;
+			}else{
+				eux = player;
+			}
+		}
 
         String mouvement = "";
         
@@ -283,6 +276,7 @@ public class Traitements {
 
     private static Board extraitJson(String json) {
         Gson gson = new Gson();
+        
         return gson.fromJson(json, Board.class);
     }
 
