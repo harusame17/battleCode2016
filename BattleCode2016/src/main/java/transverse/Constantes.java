@@ -42,12 +42,14 @@ public class Constantes {
     // public static String NOM_EQUIPE = "Team-1991-Sauf-Maxime-Qui-Est-De-1988";
     // public static String MDP = "FA188391ahah";
     // public static String GETID = "player/getIdEquipe/" + NOM_EQUIPE + "/" + MDP;
+
 //    public static String NOM_EQUIPE = "aaa-Team-Des-Jeremy-Lol";
 //
 //    public static String MDP = "IlsSontChiantsSurSim@tAvecLeurNomDEquipeQuiFait10kmDeLong";
 //
 //	public static String GETID = "player/getIdEquipe/" + NOM_EQUIPE + "/" + MDP;
 //	
+
     public static String NOM_EQUIPE = "aaa-Team-Des-JerOnDoitAbregerEnFaitDsl";
 
     public static String MDP = "Cyr1l-3st_FonctionNel";
@@ -116,7 +118,7 @@ public class Constantes {
 	
 	public static final boolean TEST = true;
 
-    public static final boolean VIA_PROXY = false;
+    public static final boolean VIA_PROXY = true;
 	
 	// Bien dégueu
 	public static Logs logs;
